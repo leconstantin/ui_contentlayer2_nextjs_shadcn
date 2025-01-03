@@ -8,11 +8,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 // import "@/styles/mdx.css";
-type PostPageProps = {
+interface PostPageProps {
   params: {
     slug: string[];
   };
-};
+}
 
 export async function generateMetadata({
   params,
@@ -42,7 +42,7 @@ export async function generateMetadata({
   };
 }
 
-async function getPostFromParams(params: PostPageProps["params"]) {
+async function getPostFromParams(params: { slug: string[] }) {
   const slug = (await params)?.slug?.join("/");
   const post = allPosts.find((post) => post.slugAsParams === slug);
 
