@@ -8,15 +8,17 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 // import "@/styles/mdx.css";
-interface PostPageProps {
-  params: {
-    slug: string[];
-  };
-}
+// interface PostPageProps {
+//   params: {
+//     slug: string[];
+//   };
+// }
 
 export async function generateMetadata({
   params,
-}: PostPageProps): Promise<Metadata> {
+}: {
+  params: Promise<{ slug: string[] }>;
+}): Promise<Metadata> {
   const post = await getPostFromParams(params);
 
   if (!post) {
@@ -41,24 +43,22 @@ export async function generateMetadata({
     },
   };
 }
-async function getPostFromParams(params: { slug: string[]; }) {
-  const slug = (await params)?.slug?.join("/")
-  const post = allPosts.find((post) => post.slugAsParams === slug)
+async function getPostFromParams(params: Promise<{ slug: string[] }>) {
+  const slug = (await params)?.slug?.join("/");
+  const post = allPosts.find((post) => post.slugAsParams === slug);
 
   if (!post) {
-    null
+    null;
   }
 
-  return post
+  return post;
 }
-export async function generateStaticParams(): Promise<
-PostPageProps["params"][]
-> {
-return allPosts.map((post) => ({
-  slug: post.slugAsParams.split("/"),
-}))
-}
-export default async function PostPage({ params }: PostPageProps) {
+
+export default async function PostPage({
+  params,
+}: {
+  params: Promise<{ slug: string[] }>;
+}) {
   // const { slug } = await params;
   const post = await getPostFromParams(params);
   // console.log(post);
