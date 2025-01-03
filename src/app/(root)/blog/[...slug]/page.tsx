@@ -7,12 +7,6 @@ import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-// import "@/styles/mdx.css";
-// interface PostPageProps {
-//   params: {
-//     slug: string[];
-//   };
-// }
 
 export async function generateMetadata({
   params,
@@ -59,9 +53,7 @@ export default async function PostPage({
 }: {
   params: Promise<{ slug: string[] }>;
 }) {
-  // const { slug } = await params;
   const post = await getPostFromParams(params);
-  // console.log(post);
   if (!post) {
     notFound();
   }
