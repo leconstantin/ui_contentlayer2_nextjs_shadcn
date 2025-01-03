@@ -41,16 +41,22 @@ export async function generateMetadata({
     },
   };
 }
-
-async function getPostFromParams(params: { slug: string[] }) {
-  const slug = (await params)?.slug?.join("/");
-  const post = allPosts.find((post) => post.slugAsParams === slug);
+async function getPostFromParams(params: { slug: string[]; }) {
+  const slug = (await params)?.slug?.join("/")
+  const post = allPosts.find((post) => post.slugAsParams === slug)
 
   if (!post) {
-    return null;
+    null
   }
 
-  return post;
+  return post
+}
+export async function generateStaticParams(): Promise<
+PostPageProps["params"][]
+> {
+return allPosts.map((post) => ({
+  slug: post.slugAsParams.split("/"),
+}))
 }
 export default async function PostPage({ params }: PostPageProps) {
   // const { slug } = await params;
