@@ -48,7 +48,7 @@ async function getPostFromParams(params: Promise<{ slug: string[] }>) {
   const post = allPosts.find((post) => post.slugAsParams === slug);
 
   if (!post) {
-    null;
+    notFound();
   }
 
   return post;
