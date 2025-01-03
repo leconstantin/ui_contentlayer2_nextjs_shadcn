@@ -43,7 +43,7 @@ export async function generateMetadata({
 }
 
 async function getPostFromParams(params: { slug: string[] }) {
-  const slug = params?.slug?.join("/");
+  const slug = (await params)?.slug?.join("/");
   const post = allPosts.find((post) => post.slugAsParams === slug);
 
   if (!post) {
