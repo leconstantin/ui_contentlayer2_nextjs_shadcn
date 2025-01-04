@@ -5,7 +5,11 @@ import * as React from "react"
 import { cn } from "@/lib/utils"
 import { Input } from "./ui/input"
 import { toast } from "./ui/use-toast"
-interface DocsSearchProps extends React.HTMLAttributes<HTMLFormElement> {}
+
+
+interface DocsSearchProps extends React.HTMLProps<HTMLFormElement> {
+  className?: string;
+}
 
 export function DocsSearch({ className, ...props }: DocsSearchProps) {
  
