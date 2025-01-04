@@ -8,6 +8,7 @@ import { RootLayoutProp } from "@/types";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
 import { TailwindIndicator } from "@/components/tailwind-indicator";
+import { Analytics } from '@vercel/analytics/next'
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -77,6 +78,7 @@ export default function RootLayout({ children }: RootLayoutProp) {
           {children}
           <Toaster />
           <TailwindIndicator />
+          <Analytics />
         </ThemeProvider>
       </body>
     </html>
