@@ -6,6 +6,8 @@ import { cn } from "@/lib/utils";
 import { siteConfig } from "@/config/site";
 import { RootLayoutProp } from "@/types";
 import { ThemeProvider } from "@/components/theme-provider";
+import { Toaster } from "@/components/ui/toaster";
+import { TailwindIndicator } from "@/components/tailwind-indicator";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -33,15 +35,11 @@ export const metadata: Metadata = {
   ],
   authors: [
     {
-      name: "shadcn",
-      url: "https://shadcn.com",
+      name: "leConstantin",
+      url: "https://le-constantin.vercel.app",
     },
   ],
-  creator: "shadcn",
-  // themeColor: [
-  //   { media: "(prefers-color-scheme: light)", color: "white" },
-  //   { media: "(prefers-color-scheme: dark)", color: "black" },
-  // ],
+  creator: "leConstantin",
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -77,6 +75,8 @@ export default function RootLayout({ children }: RootLayoutProp) {
       >
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
           {children}
+          <Toaster />
+          <TailwindIndicator />
         </ThemeProvider>
       </body>
     </html>
